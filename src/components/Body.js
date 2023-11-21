@@ -1,11 +1,13 @@
 import RestaurentCard from "./RestaurentCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Simmer from "./Simmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   const [restaurentList, setRestaurentList] = useState([]);
   const [filterData, setFilteredData] = useState([]);
   const [searchText, setSearchText] = useState("");
-  console.log(filterData);
+
   async function fetchData() {
     try {
       let res = await fetch(
@@ -19,9 +21,6 @@ const Body = () => {
 
       setRestaurentList(resData);
       setFilteredData(resData);
-      console.log(
-        data.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
-      );
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +30,17 @@ const Body = () => {
     fetchData();
   }, []);
 
-  if (restaurentList.length === 0) {
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return (
+      <h1>
+        Looks like you are offline !! please check your Internet connection ...
+      </h1>
+    );
+  }
+
+  if (restaurentList?.length === 0) {
     return <Simmer />;
   }
   return (
@@ -70,8 +79,12 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filterData.map((ele) => {
-          return <RestaurentCard key={ele.info.id} resData={ele} />;
+        {filterData?.map((ele) => {
+          return (
+            <Link key={ele.info.id} to={"/restaurents/" + ele.info.id}>
+              <RestaurentCard key={ele.info.id} resData={ele} />
+            </Link>
+          );
         })}
       </div>
     </div>
