@@ -2,7 +2,10 @@ import { CDN_URL } from "../utils/constants";
 const RestaurentCard = (props) => {
   const { name, cuisines, avgRating, areaName } = props?.resData?.info;
   return (
-    <div className="res-card">
+    <div
+      className="res-card m-4 p-4 w-[250px]"
+      style={{ backgroundColor: "#f0f0f0" }}
+    >
       <img
         className="res-logo"
         src={CDN_URL + props?.resData?.info?.cloudinaryImageId}
