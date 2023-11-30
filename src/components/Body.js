@@ -28,6 +28,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchData();
+    console.log(restaurentList);
   }, []);
 
   const onlineStatus = useOnlineStatus();
