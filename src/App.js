@@ -7,6 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import ResstaurentMenu from "./components/RestaurentMenu";
+// import Index from "./Index";
 
 //lazy loading :-
 const Grocery = lazy(() => import("./components/Grocery"));
@@ -53,6 +54,7 @@ const appRouter = createBrowserRouter([
     ],
   },
 ]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<RouterProvider router={appRouter} />);

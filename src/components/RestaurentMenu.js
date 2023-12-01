@@ -16,7 +16,7 @@ const RestaurentMenu = () => {
   let itemCards =
     resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
       ?.itemCards;
-
+  let categories = [];
   categories =
     resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (element) =>
@@ -32,7 +32,12 @@ const RestaurentMenu = () => {
         {cuisines} - {costForTwoMessage}
       </p>
       {categories.map((category) => {
-        return <ResCategory data={category.card.card} />;
+        return (
+          <ResCategory
+            key={category.card.card.title}
+            data={category.card.card}
+          />
+        );
       })}
     </div>
   );
