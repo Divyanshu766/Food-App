@@ -2,11 +2,13 @@ import Simmer from "./Simmer";
 import { useParams } from "react-router-dom";
 import useRestaurentMenu from "../utils/useRestaurentMenu";
 import ResCategory from "./ResCategory";
+import { useState } from "react";
 
 const RestaurentMenu = () => {
   const { resId } = useParams();
 
   const resInfo = useRestaurentMenu(resId);
+  const [showIndex, setShowIndex] = useState(null);
 
   if (resInfo === null) return <Simmer />;
   console.log(resInfo.cards[0].card.card.info);
@@ -31,11 +33,15 @@ const RestaurentMenu = () => {
       <p className="font-bold text-lg">
         {cuisines} - {costForTwoMessage}
       </p>
-      {categories.map((category) => {
+      {categories.map((category, index) => {
         return (
           <ResCategory
             key={category.card.card.title}
             data={category.card.card}
+            showItems={index === showIndex ? true : false}
+            setShowIndex={() =>
+              index === showIndex ? setShowIndex(null) : setShowIndex(index)
+            }
           />
         );
       })}
