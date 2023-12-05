@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Simmer from "./Simmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
+
 const Body = () => {
   const [restaurentList, setRestaurentList] = useState([]);
   const [filterData, setFilteredData] = useState([]);
   const [searchText, setSearchText] = useState("");
-
+  const { setUserName, loggedInUser } = useContext(UserContext);
   async function fetchData() {
     try {
       let res = await fetch(
@@ -80,6 +83,16 @@ const Body = () => {
           >
             Top Rated Restaurent
           </button>
+        </div>
+        <div className="m-4 p-8 flex items-centre gap-2">
+          <label className="flex items-center">User Name :</label>
+          <input
+            className="border border-black"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+          />
         </div>
       </div>
       <div className="res-container flex flex-wrap">

@@ -11,7 +11,6 @@ const RestaurentMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
 
   if (resInfo === null) return <Simmer />;
-  console.log(resInfo.cards[0].card.card.info);
   let { name, cuisines, costForTwoMessage } =
     resInfo?.cards[0]?.card?.card?.info;
 
