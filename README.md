@@ -25,3 +25,9 @@ for get data we will use [selector](subscribing)
 -Slice (cartSlice)
 -dispatch(action)
 -Selector
+
+
+
+--cofigure()
+--Provider
+createSlice()

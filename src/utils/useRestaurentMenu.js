@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 const useRestaurentMenu = (resId) => {
-  const [resInfo, setResInfo] = useState(null);
+  const [resInfo, setResInfo] = useState([]);
 
   const fetchData = async () => {
     const data = await fetch(
